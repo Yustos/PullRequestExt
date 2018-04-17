@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="YL.PullRequestViewer.Controls.PullRequestThreadsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:YL.PullRequestViewer.Controls.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="ListViewStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <ListView x:Name="listView" ItemsSource="{Binding PullRequestThreads}" MouseDoubleClick="ListViewMouseDoubleClick" SelectionChanged="ListViewSelectionChanged">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Open thread" Click="MenuItemClick"></MenuItem>
+                    <MenuItem Header="Create thread" Click="MenuItemCreateThreadClick"></MenuItem>
+                    <MenuItem Header="Show all" IsChecked="{Binding ShowAll, Mode=TwoWay}" IsCheckable="True"></MenuItem>
+                    <MenuItem Header="Set">
+                        <MenuItem Header="Active" Click="MenuItemSetThreadStateClick" Tag="Active"></MenuItem>
+                        <MenuItem Header="Fixed" Click="MenuItemSetThreadStateClick" Tag="Fixed"></MenuItem>
+                        <MenuItem Header="Closed" Click="MenuItemSetThreadStateClick" Tag="Closed"></MenuItem>
+                        <MenuItem Header="WontFix" Click="MenuItemSetThreadStateClick" Tag="WontFix"></MenuItem>
+                        <MenuItem Header="ByDesign" Click="MenuItemSetThreadStateClick" Tag="ByDesign"></MenuItem>
+                        <MenuItem Header="Pending" Click="MenuItemSetThreadStateClick" Tag="Pending"></MenuItem>
+                    </MenuItem>
+                    <MenuItem Header="Reply" Click="MenuItemThreadReplyClick"></MenuItem>
+                    <MenuItem Header="Properties" Click="MenuItemPropertiesClick"></MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <!--<ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="{Binding IsDeleted, Converter={converters:IsDeletedColorConverter}}" ></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>-->
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding CommentsCount}" />
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding ThreadStatus, Converter={converters:StatusToTextConverter}}"></GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding IsDeleted, Converter={converters:IsDeletedToTextConverter}}"></GridViewColumn>
+                        <GridViewColumn Width="Auto" Header="Title" DisplayMemberBinding="{Binding Title}"></GridViewColumn>
+                        <GridViewColumn Width="Auto" Header="Author" DisplayMemberBinding="{Binding Author}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

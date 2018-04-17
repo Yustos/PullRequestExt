@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+  <Include href="KnownImageIds.vsct"/>
+
+  <Commands package="guidClientPkg">
+    <Menus>
+      <Menu guid="guidClientCmdSet" id="PullRequestsToolbar" priority="0x0000" type="ToolWindowToolbar">
+        <Parent guid="guidClientCmdSet" id="PullRequestsToolbar" />
+        <Strings>
+          <ButtonText>Pull requests</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+    <Groups>
+      <Group guid="guidClientCmdSet" id="PullRequestsToolbarGroup" priority="0x0500">
+        <Parent guid="guidClientCmdSet" id="PullRequestsToolbar" />
+      </Group>
+    </Groups>
+    <Buttons>
+      <Button guid="guidClientCmdSet" id="cmdidShowPullRequestsWindow" priority="0x100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_WNDO_OTRWNDWS1" />
+        <Icon guid="ImageCatalogGuid" id="OneX" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>&amp;Pull requests</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidClientCmdSet" id="cmdidHome" priority="0x100" type="Button">
+        <Parent guid="guidClientCmdSet" id="PullRequestsToolbarGroup" />
+        <Icon guid="ImageCatalogGuid" id="Home" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Home</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidClientCmdSet" id="cmdidRefresh" priority="0x101" type="Button">
+        <Parent guid="guidClientCmdSet" id="PullRequestsToolbarGroup" />
+        <Icon guid="ImageCatalogGuid" id="Refresh" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Load pull requests for current branch</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidClientCmdSet" id="cmdidBackward" priority="0x102" type="Button">
+        <Parent guid="guidClientCmdSet" id="PullRequestsToolbarGroup" />
+        <Icon guid="ImageCatalogGuid" id="Backwards" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Back</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidClientCmdSet" id="cmdidCreatePullRequestThread" priority="0x103" type="Button">
+        <Parent guid="guidClientCmdSet" id="PullRequestsToolbarGroup" />
+        <Icon guid="ImageCatalogGuid" id="AddThread" />
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Create thread</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidClientPkg" value="{4E68D689-2127-473C-8AE9-F615BD0B4432}" />
+    <GuidSymbol name="guidClientCmdSet" value="{4C860B58-FE6B-4B91-80D7-EBED81D0BAD3}">
+      <IDSymbol name="PullRequestsToolbar" value="0x101" />
+      <IDSymbol name="PullRequestsToolbarGroup" value="0x1001" />
+      <IDSymbol name="cmdidShowPullRequestsWindow" value="0x2001" />
+      <IDSymbol name="cmdidHome" value="0x2003" />
+      <IDSymbol name="cmdidRefresh" value="0x2004" />
+      <IDSymbol name="cmdidBackward" value="0x2005" />
+      <IDSymbol name="cmdidCreatePullRequestThread" value="0x2006" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
